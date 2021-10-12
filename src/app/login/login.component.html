@@ -1,0 +1,28 @@
+
+
+<div class="wrapper pt-5">
+    <div class="content ">
+        <form class="form-signin  form-row  text-center " [formGroup]="dataC" (ngSubmit)="login(dataC.value)">
+            <div class="text-center mb-5">
+                <img src="assets/img/logos/logo-hmb.png" class="w-50">
+                <!-- <h2 class="form-signin-heading  text-center"><strong></strong></h2> -->
+            </div>
+
+            <hr />
+            <div class="form-group col-12">
+                <label for="usuario">Usuario</label>
+                <input type="text" class="form-control" name="usuario" formControlName="usuario" placeholder="Usuario"
+                    required="" autofocus="">
+            </div>
+
+            <div class="form-group col-12">
+              <label for="password">Contraseña</label>
+              <input type="password" class="form-control" name="password" formControlName="password" placeholder="Contraseña"
+                  required="" autofocus="">
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!dataC.valid">Ingresar</button>
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="col-12 px-5 mt-5"  *ngIf="persona && !personaNoEncontrada" >
+    <div class="card card-user">
+      <div class="image py-5 "  ><img alt="..." src="assets\img\img-tablero\Portada-Intranet.png"></div>
+      <div class="card-body ">
+        <div class="author"><img alt="..." class="avatar border-gray" src="assets\img\img-tablero\Logo-Intranet.png">
+            <h5 class="title colorTitle">{{persona.personaRAZONSOCIAL}}</h5>
+          <p class="description"> <strong>{{persona.tipoIdentificacionCODIGO}} :</strong> {{persona.personaIDENTIFICACION}} </p>
+          <p class="description"> <strong>CARGO :</strong> {{persona.cargoTITULO}} </p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <hr>
+        <div class="button-container">
+          <div class="row">
+            <div class="col-12 text-center">
+              Estado del funcionario
+            </div>
+            <div class="col-12 text-center">
+               <h5> <strong>{{persona.usuarioESTADO}}</strong></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 px-5 mt-5"  *ngIf="personaNoEncontrada">
+    <div class="card card-user">
+      <div class="card-body">
+        <h5 class="title text-center" style="color: red;">Persona no encontrada en nuestra base de datos.</h5>
+      </div>
+    </div>
+  </div>
+</div>

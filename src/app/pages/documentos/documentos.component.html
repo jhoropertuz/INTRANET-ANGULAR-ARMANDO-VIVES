@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+       <h5 class="card-title">Documentos</h5>
+      </div>
+      <div class="card-body ">
+      <div class="row" >
+          <div class="col-12 text-right">
+            <button type="button" *ngIf="userAdmin" class="btn btn-outline-info btn-sm" (click)="nuevo()" >Nuevo</button>
+            <button type="button" *ngIf="userAdmin" class="btn btn-outline-warning btn-sm" (click)="editar()"  >Editar</button>
+            <button type="button" class="btn btn-outline-success btn-sm" (click)="ver()" >ver</button>
+          </div>
+        </div>
+        <hr>
+        <div class="row" >
+          <div class="col-12">
+           <app-tabla-datatable> </app-tabla-datatable>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

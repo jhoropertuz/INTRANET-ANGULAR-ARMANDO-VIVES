@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-12">
+    <div  class="card" *ngIf="!datosSolicitud">
+      <app-cargando-sonar></app-cargando-sonar>
+    </div>
+    <div class="card " *ngIf="datosSolicitud">
+      <div class="card-header ">
+        <h5 class="card-title">Solicitud #{{datosSolicitud.mesaDeAyudaID}}</h5>
+      </div>
+      <div class="card-body mt-5 ">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header ">
+                  <h6 class="card-title">Solicitud</h6>
+                  <hr>
+                </div>
+                <div class="card-body">
+                  <p><strong>Prioridad :</strong> {{datosSolicitud.mesaDeAyudaNIVELPRIORIDAD}}</p>
+                  <p><strong>Tipo Solicitud :</strong> {{datosSolicitud.mesaDeAyudaTIPOSOLICITUD}}</p>
+                  <p><strong>Ubicación :</strong> {{datosSolicitud.mesaDeAyudaUBICACIONDELSUCESO}}</p>
+                  <p><strong>Descripción :</strong> {{datosSolicitud.mesaDeAyudaDESCRIPCION}}</p>
+                  <p><strong>Numero Inventario De Equipo :</strong> {{datosSolicitud.mesaDeAyudaNUMEROINVENTARIOEQUIPO}}</p>
+                  <p><strong>Nota :</strong> {{datosSolicitud.mesaDeAyudaNOTA}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header ">
+                  <h6 class="card-title">Solicitante</h6>
+                  <hr>
+                </div>
+                <div class="card-body">
+                  <p><strong>Numero De Identificación :</strong> {{datosSolicitud.personaIDENTIFICACION}}</p>
+                  <p><strong>Nombre Completo :</strong> {{datosSolicitud.personaRAZONSOCIAL}}</p>
+                  <p><strong>Correo :</strong> {{datosSolicitud.personaCORREO}}</p>
+                  <p><strong>Celular :</strong> {{datosSolicitud.personaCELULAR}}</p>
+                  <p><strong>Grupo De Trabajo :</strong> {{datosSolicitud.grupoTrabajoTITULO}}</p>
+                  <p><strong>Cargo :</strong> {{datosSolicitud.cargoTITULO}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header ">
+                  <h6 class="card-title">Info Solicitud</h6>
+                  <hr>
+                </div>
+                <div class="card-body">
+                  <p><strong>Estado :</strong> {{datosSolicitud.mesaDeAyudaESTADO}}</p>
+                  <p><strong>Funcionario Asignado :</strong> {{datosSolicitud.personasAsignadaRAZONSOCIAL}}</p>
+                  <p><strong>Fch Creación :</strong> {{datosSolicitud.mesaDeAyudaFCHCREO}}</p>
+                  <p><strong>Fch Modificación :</strong> {{datosSolicitud.mesaDeAyudaFCHMODIFICO}}</p>
+                  <p><strong>Fch En Curso :</strong> {{datosSolicitud.mesaDeAyudaFCHENCURSO}}</p>
+                  <p><strong>Fch Asignación:</strong> {{datosSolicitud.mesaDeAyudaFCHASIGNACION}}</p>
+                  <p><strong>Fch Finalización :</strong> {{datosSolicitud.mesaDeAyudaFCHFINALIZACION}}</p>
+                  <!-- <p><strong>Fch Cerrado :</strong> {{datosSolicitud.mesaDeAyudaFCHCERRADO}}</p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

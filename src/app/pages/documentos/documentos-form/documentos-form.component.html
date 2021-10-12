@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+       <h5 class="card-title">{{Titulo}}</h5>
+      </div>
+      <div class="card-body ">
+        <div class="row" >
+          <div class="col-12 text-right">
+            <button type="button" class="btn bg-danger" (click)="eliminar()" >Eliminar</button>
+          </div>
+        </div>
+        <hr>
+        <form [formGroup]="formDocumentos" (ngSubmit)="enviarPeticion(formDocumentos.value)" class="px-3">
+          <div class="row" >
+               <div class="col-6" >
+                    <div class="form-group">
+                      <label>Titulo</label>
+                      <input type="text" class="form-control" formControlName="documentoTITULO" placeholder="Ingrese el titulo del documento">
+                  </div>
+                </div>
+                <div class="col-6" >
+                    <div class="form-group">
+                      <label>Carpeta</label>
+                      <select name="carpetaDocumentoID" formControlName="carpetaDocumentoID" class="form-control" id="carpetaDocumentoID">
+                        <option value="">Selecciona la carpeta</option>
+                        <option *ngFor="let carpeta of carpetas"  value="{{carpeta.carpetaDocumentoID}}">{{carpeta.carpetaDocumentoTITULO}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6" >
+                    <div class="form-group">
+                      <label>Estado</label>
+                      <select name="documentoESTADO" formControlName="documentoESTADO" class="form-control" id="documentoESTADO">
+                        <option value="">Selecciona la carpeta</option>
+                        <option  value="ACTIVO">ACTIVO</option>
+                        <option  value="DESACTIVO">DESACTIVO</option>
+                      </select>
+                    </div>
+                  </div>
+
+
+            </div>
+            <div *ngIf="documentoURL" class="row my-5">
+              <div class="col-12" >
+                De click  <a href="{{documentoURL}}" target="_self" >aquí</a> para visualizar el archivo actual.Si desea actualizarlo por favor suba el archivo en la sección inferior.
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-9 text-center bg-info contenedorFile ml-auto mr-auto pt-3"    >
+                <div class="form-group ">
+                  <label> <strong> {{TituloArchivo}} </strong> </label>
+                  <input type="file"  (change)="cargandoFile($event.target.files[0])"  class="form-control" formControlName="documentoArchivo" placeholder="Ingrese el documento">
+                 </div>
+              </div>
+           </div>
+
+            <div class="row mt-5">
+              <div class="update ml-auto mr-auto col-12">
+                  <button type="submit" [disabled]="!formDocumentos.valid" class="btn btn-success btn-round w-100 ">{{tituloaccion}}</button>
+              </div>
+           </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

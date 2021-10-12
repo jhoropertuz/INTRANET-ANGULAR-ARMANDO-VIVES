@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">{{titulo}}</h5>
+      </div>
+        <div class="card-body">
+          <div class="row" >
+            <div class="col-12 text-right" >
+              <button type="button" class="btn btn-outline-info btn-sm" (click)="guardarPermisos()" >Guardar</button>
+            </div>
+          </div>
+          <div class="table-responsive"    >
+            <table class="table">
+              <thead class=" text-primary">
+                <th>#</th>
+                <th>Titulo</th>
+                <th>Descripción</th>
+                <th>Menu</th>
+              </thead>
+              <tbody *ngIf="mostrarTablasPermisos" >
+                <tr *ngFor="let permiso of todosPermisos" >
+                  <td>
+                    <input type="checkbox" [value]="permiso.controlOperacionID" [checked]="permiso.check" (change)="selectElemto($event)" />
+                  </td>
+                  <td >
+                    {{permiso.controlOperacionTITULO}}
+                  </td>
+                  <td >
+                    {{permiso.controlOperacionDESCRIPCION}}
+                  </td>
+                  <td >
+                    {{permiso.controlOperacionMENU}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

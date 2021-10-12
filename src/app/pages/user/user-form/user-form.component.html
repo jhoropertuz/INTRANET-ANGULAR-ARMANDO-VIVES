@@ -1,0 +1,360 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-user">
+            <div class="card-header">
+                <h5 class="card-title">{{tituloFormulario}}</h5>
+            </div>
+            <div class="card-body ">
+                <form [formGroup]="formUser" (ngSubmit)="enviarPeticion(formUser.value)" class="px-3">
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h5>Datos Personales</h5>
+                            <hr>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Tipo de Persona</label>
+                                        <select (change)="cambioTipoPersona()" name="tipoPersonaID" formControlName="tipoPersonaID" class="form-control" id="tipoPersonaID">
+                          <option *ngFor="let tipoPersona of tipoPersonas" value="{{tipoPersona.tipoPersonaID}}">{{tipoPersona.tipoPersonaTITULO}}</option>
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label>Tipo de Identificación</label>
+                                        <select name="tipoIdentificacionID" formControlName="tipoIdentificacionID" class="form-control" id="tipoIdentificacionID">
+                          <option value="">Selecciona el Tipo</option>
+                          <option *ngFor="let tipoIdentificacion of tiposIdentificaciones" value="{{tipoIdentificacion.tipoIdentificacionID}}">{{tipoIdentificacion.tipoIdentificacionTITULO}}</option>
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label for="personaIDENTIFICACION">Identificación</label>
+                                        <input type="text" class="form-control" placeholder="ingrese el numero de identificación" [readonly]="miPerfil" formControlName="personaIDENTIFICACION">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="personaNarura">
+                              <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label>Pais de expedición</label>
+                                  <select name="paisExpedicionID" formControlName="paisExpedicionID" (change)="selectPaisExpedicion($event.target.value)" class="form-control" id="paisExpedicionID">
+                                    <option value="">Selecciona el Pais</option>
+                                    <option *ngFor="let paisExpedicion of paisesExpedicion"  value="{{paisExpedicion.paisID}}">{{paisExpedicion.paisNOMBRE}}</option>
+                                  </select>
+                                </div>
+                            </div>
+                              <div class="col-md-4 px-1">
+                                  <div class="form-group">
+                                      <label>Departamento de expedición</label>
+                                    <select name="departamentoExpedicionID" formControlName="departamentoExpedicionID" (change)="selectDepartamentoExpedicion($event.target.value)" class="form-control" id="departamentoExpedicionID">
+                                      <option value="">Selecciona el Departamento</option>
+                                      <option *ngFor="let departamentoExpedicion of departamentosExpedicion"  value="{{departamentoExpedicion.departamentoID}}">{{departamentoExpedicion.departamentoNOMBRE}}</option>
+                                    </select>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 pr-1">
+                                  <div class="form-group">
+                                      <label>Municipio de expedición</label>
+                                      <select name="personaMUNICIPIOEXPEDICION" formControlName="personaMUNICIPIOEXPEDICION" class="form-control" id="personaMUNICIPIOEXPEDICION">
+                                  <option value="">Selecciona el Municipio </option>
+                                  <option *ngFor="let municipioExpedicion of municipiosExpedicion"  value="{{municipioExpedicion.municipioID}}">{{municipioExpedicion.municipioNOMBREOFICIAL}}</option>
+                                </select>
+                                  </div>
+                              </div>
+                          </div>
+                            <div class="row" *ngIf="personaNarura">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Primer Nombre</label>
+                                        <input type="text" class="form-control" formControlName="personaPRIMERNOMBRE" placeholder="Ingrese el primer nombre">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Segundo Nombre</label>
+                                        <input type="text" class="form-control" placeholder="Ingrese el segundo nombre" name="personaSEGUNDONOMBRE" formControlName="personaSEGUNDONOMBRE">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="personaNarura">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Primer Apellido</label>
+                                        <input type="text" class="form-control" placeholder="Ingrese el primer apellido" name="personaPRIMERAPELLIDO" formControlName="personaPRIMERAPELLIDO">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Segundo Apellido</label>
+                                        <input type="text" class="form-control" placeholder="Ingrese el segundo apellido" name="personaSEGUINDOAPELLIDO" formControlName="personaSEGUINDOAPELLIDO">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="personaNarura">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Estado Civil</label>
+                                        <select name="personaESTADOCIVIL" formControlName="personaESTADOCIVIL" class="form-control" id="personaESTADOCIVIL">
+                        <option value="">Selecciona el estado civil</option>
+                          <option value="SOLTERO">SOLTERO</option>
+                          <option value="VIUDO">VIUDO</option>
+                          <option value="UNION LIBRE">UNION LIBRE</option>
+                          <option value="DIVORCIADO">DIVORCIADO</option>
+                          <option value="CASADO">CASADO</option>
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pX-1">
+                                    <div class="form-group">
+                                        <label>Numero de hijos</label>
+                                        <select name="personaNUMEROHIJOS" formControlName="personaNUMEROHIJOS" class="form-control" id="personaNUMEROHIJOS">
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="MAS DE 3">MAS DE 3</option>
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label>Genero</label>
+                                        <select name="personaGENERO" formControlName="personaGENERO" class="form-control" id="personaGENERO">
+                        <option value="">Selecciona el genero</option>
+                          <option value="HOMBRE">HOMBRE</option>
+                          <option value="MUJER">MUJER</option>
+                          <option value="OTROS">OTRO</option>
+                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="!personaNarura">
+                                <div class="col-12 px-3">
+                                    <div class="form-group">
+                                        <label>Razón Social</label>
+                                        <input type="text" class="form-control" placeholder="Ingrese la razón social" name="personaRAZONSOCIAL" formControlName="personaRAZONSOCIAL">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Correo</label>
+                                        <input type="email" class="form-control" placeholder="Ingrese el Correo" name="personaCORREO" formControlName="personaCORREO">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Celular</label>
+                                        <input type="number" class="form-control" placeholder="Ingrese el numero celular" name="personaCELULAR" formControlName="personaCELULAR">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Dirrección</label>
+                                        <input type="text" class="form-control" placeholder="Ingrese la dirección de la vivienda" name="personaDIRECCION" formControlName="personaDIRECCION">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 px-1">
+                                    <div class="form-group">
+                                        <label>Fecha de Nacimiento</label>
+                                        <input type="date" class="form-control" name="personaFCHNACIMIENTO" formControlName="personaFCHNACIMIENTO">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                  <div class="form-group">
+                                      <label>Pais de Nacimiento</label>
+                                    <select name="paisID" formControlName="paisID" (change)="selectPais($event.target.value)" class="form-control" id="paisID">
+                                      <option value="">Selecciona el Pais</option>
+                                      <option *ngFor="let pais of paises"  value="{{pais.paisID}}">{{pais.paisNOMBRE}}</option>
+                                    </select>
+                                  </div>
+                              </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label>Departamento de Nacimiento</label>
+                                      <select name="departamentoID" formControlName="departamentoID" (change)="selectDepartamento($event.target.value)" class="form-control" id="departamentoID">
+                                        <option value="">Selecciona el Departamento</option>
+                                        <option *ngFor="let departamento of departamentos"  value="{{departamento.departamentoID}}">{{departamento.departamentoNOMBRE}}</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label>Municipio de Nacimiento</label>
+                                        <select name="personaMUNICIPIONACIMIENTO" formControlName="personaMUNICIPIONACIMIENTO" class="form-control" id="personaMUNICIPIONACIMIENTO">
+                          <option value="">Selecciona el Municipio</option>
+                          <option *ngFor="let municipio of municipios"  value="{{municipio.municipioID}}">{{municipio.municipioNOMBREOFICIAL}}</option>
+                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Eps</label>
+                                        <select name="epsID" formControlName="epsID" class="form-control" id="epsID">
+                          <option value="">Selecciona el Tipo</option>
+                          <option *ngFor="let eps of entidadespromotorassalud" value="{{eps.epsID}}">{{eps.epsTITULO}}</option>
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Fondo de Pensiones</label>
+                                        <select name="fondoPensionID" formControlName="fondoPensionID" class="form-control" id="fondoPensionID">
+                          <option value="">Selecciona</option>
+                          <option *ngFor="let fondopension of fondospensiones" value="{{fondopension.fondoPensionID}}">{{fondopension.fondoPensionTITULO}}</option>
+                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>ARL</label>
+                                        <select name="arlID" formControlName="arlID" class="form-control" id="arlID">
+                          <option value="">Selecciona</option>
+                          <option *ngFor="let arl of aseguradorasriesgoslaborales" value="{{arl.arlID}}">{{arl.arlTITULO}}</option>
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>RUT</label>
+                                        <input type="text" name="personaRUT" id="personaRUT" class="form-control" formControlName="personaRUT">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h5>Datos Laborales</h5>
+                            <hr>
+                        </div>
+                        <hr>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Fecha de Ingreso</label>
+                                        <input type="date" class="form-control" formControlName="colaboradorFCHINGRESO">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label>Cargo</label>
+                                        <select name="cargoID" formControlName="cargoID" class="form-control" id="cargoID">
+                          <option value="">Selecciona</option>
+                          <option  *ngFor="let cargo of cargos" value="{{cargo.cargoID}}">{{cargo.cargoTITULO}}</option>
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label>Correo Institucional</label>
+                                        <input type="email" class="form-control" formControlName="colaboradorCORREO">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Unidad de Trabajo</label>
+                                        <select name="unidadFuncionalID" formControlName="unidadFuncionalID" (change)="selectUnidad($event.target.value)" class="form-control" id="unidadFuncionalID">
+                          <option value="">Selecciona la unidad</option>
+                          <option *ngFor="let unidadFuncional of unidadesFuncionales"  value="{{unidadFuncional.unidadFuncionalID}}">{{unidadFuncional.unidadFuncionalTITULO}}</option>
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label>Grupo de Trabajo</label>
+                                        <select name="grupoTrabajoID" formControlName="grupoTrabajoID" class="form-control" id="grupoTrabajoID">
+                          <option value="">Selecciona el grupo</option>
+                          <option *ngFor="let grupoTrabajo of gruposTrabajo"  value="{{grupoTrabajo.grupoTrabajoID}}">{{grupoTrabajo.grupoTrabajoTITULO}}</option>
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label>Nivel Escolar</label>
+                                        <select name="nivelEscolarID" formControlName="nivelEscolarID" class="form-control" id="nivelEscolarID">
+                          <option value="">Selecciona el nivel</option>
+                          <option *ngFor="let nivelEscolar of nivelesEscolares" value="{{nivelEscolar.nivelEscolarID}}">{{nivelEscolar.nivelEscolarTITULO}}</option>
+                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h5>Cuenta</h5>
+                            <hr>
+                        </div>
+                        <hr>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Nombre Usuario</label>
+                                        <input type="text" class="form-control" [readonly]="miPerfil" placeholder="Nombre Usuario" name="usuarioNOMBRE" formControlName="usuarioNOMBRE">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Contraseña</label>
+                                        <input type="password" class="form-control" placeholder="Contraseña" name="
+                        usuarioCLAVE" formControlName="usuarioCLAVE" autocomplete="new-password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Tipo de Usuario</label>
+                                        <select name="usuarioTIPO" formControlName="usuarioTIPO"  class="form-control" id="usuarioTIPO">
+                          <option value="">Selecciona el Tipo</option>
+                          <option value="NORMAL" [disabled]="miPerfil">NORMAL</option>
+                          <option value="ADMIN" [disabled]="miPerfil">ADMIN</option>
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Estado de Usuario</label>
+                                        <select name="usuarioTIPO" formControlName="usuarioESTADO" class="form-control" id="usuarioESTADO">
+                          <option value="">Selecciona el Estado</option>
+                          <option value="ACTIVO" [disabled]="miPerfil">ACTIVO</option>
+                          <option value="DESACTIVO" [disabled]="miPerfil">DESACTIVO</option>
+                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="update ml-auto mr-auto col-12">
+                            <button type="submit" [disabled]="!formUser.valid" class="btn btn-primary btn-round w-100 ">{{tituloaccion}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

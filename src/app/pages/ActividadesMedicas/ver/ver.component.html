@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="col-md-12" *ngIf="cargando">
+    <app-cargando-sonar></app-cargando-sonar>
+  </div>
+  <div class="col-md-12" *ngIf="!cargando">
+    <div class="card ">
+      <div class="card-header ">
+        <h5 class="card-title">Ver</h5>
+      </div>
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-12 text-right">
+            <button type="button" class="btn btn-outline-success btn-sm" (click)="exportar()">Exportar</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+           <strong> De : </strong>  {{actividadMedica.personaRAZONSOCIALENTREGA}} <br>
+           <strong> Asignado a : </strong> {{actividadMedica.personaRAZONSOCIAL}} <br>
+           <strong> Servicio : </strong> {{pacientes[0].servicioNOMBRE}} <br>
+           <strong> Fecha : </strong>{{actividadMedica.actividadMedicaColaboradorFCHCREO}}
+          </div>
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    Nombre
+                  </th>
+                  <th>
+                    Identificación
+                  </th>
+                  <th>
+                    Eps
+                  </th>
+                  <th>
+                    Especialidad
+                  </th>
+                  <th>
+                    Cama
+                  </th>
+                  <th>
+                    Alergia
+                  </th>
+                  <th>
+                    Diagnostico
+                  </th>
+                  <th>
+                    Imagen
+                  </th>
+                  <th>
+                    Medicamentos
+                  </th>
+                  <th>
+                    ParaClinicos
+                  </th>
+                  <th>
+                    Perfil_Infeccioso
+                  </th>
+                  <th>
+                    Perfil_Toxemico
+                  </th>
+                  <th>
+                    Pendiente
+                  </th>
+                  <th>
+                    Ingreso
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let paciente of pacientes">
+                    <td>
+                      {{paciente.personaRAZONSOCIAL}}
+                    </td>
+                    <td>
+                      {{paciente.personaIDENTIFICACION}}
+                    </td>
+                    <td>
+                      {{paciente.epsCODIGO}}
+                    </td>
+                    <td>
+                      {{paciente.especialidadMedicaNOMBRE}}
+                    </td>
+                    <td>
+                      {{paciente.actividadMedicaPacienteCAMA}}
+                    </td>
+                    <td>
+                      {{paciente.actividadMedicaPacienteALERGIA}}
+                    </td>
+                    <td>
+                      {{paciente.actividadMedicaPacienteDIAGNOSTICO}}
+                    </td>
+                    <td>
+                      {{paciente.actividadMedicaPacienteIMAGENES}}
+                    </td>
+                    <td>
+                      {{paciente.actividadMedicaPacienteMEDICAMENTO}}
+                    </td>
+                    <td>
+                      {{paciente.actividadMedicaPacientePARACLINICO}}
+                    </td>
+                    <td>
+                      {{paciente.actividadMedicaPacientePERFILINFECCIOSO}}
+                    </td>
+                    <td>
+                      {{paciente.actividadMedicaPacientePERFILTOXEMICO}}
+                    </td>
+                    <td>
+                      {{paciente.actividadMedicaPacienteNOTA}}
+                    </td>
+                    <td>
+                      {{paciente.actividadMedicaPacienteINGRESO}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

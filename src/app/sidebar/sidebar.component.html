@@ -1,0 +1,56 @@
+
+<div class="sidebar-wrapper" style="padding-right: 20;">
+  <div class="logo ">
+     <a href="https://www.hujmb.com/" class="simple-text logo-mini">
+      <div class="">
+        <img src="assets\img\logos\logo-simple.PNG"  >
+      </div>
+    </a>
+      <a href="/" class="simple-text logo-normal ">
+        <strong>HUJMB</strong>
+    </a>
+  </div>
+    <p class="text-center" >{{usuario.usuarioNOMBRE}}</p>
+    <ul class="nav">
+
+      <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.controlOperacionCLASECSS}}">
+        <a [routerLink]="[menuItem.controlOperacionRUTAANGULAR]">
+            <i class="nc-icon {{menuItem.controlOperacionICONO}}"></i>
+            <p>{{menuItem.controlOperacionTITULO}}</p>
+        </a>
+    </li>
+
+     <ng-container *ngFor="let menuComponente of menuComponentes; let index = index" >
+
+      <li routerLinkActive="active" *ngIf="menuComponente.items.length>0" class="">
+          <a (click)="openIndex = openIndex === index ? -1 : index" >
+              <span>{{ menuComponente.controlComponenteTITULO }}</span>
+              <span>
+              <i class="nc-icon nc-minimal-right"  *ngIf="openIndex != index" aria-hidden="true"></i>
+              <i class="nc-icon  nc-minimal-down" *ngIf="openIndex === index" ></i>
+            </span>
+             <!--  <i class="fa fa-lock"></i> <span>Administración</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+              </span> -->
+          </a>
+          <div *ngIf="openIndex === index">
+            <ul class="nav">
+                <li *ngFor="let componenteItem of menuComponente.items" routerLinkActive="active" class="{{componenteItem.controlOperacionCLASECSS}}">
+                    <a [routerLink]="[componenteItem.controlOperacionRUTAANGULAR]">
+                        <i class="nc-icon {{componenteItem.controlOperacionICONO}}"></i>
+                        <p>{{componenteItem.controlOperacionTITULO}}</p>
+                    </a>
+                </li>
+
+            </ul>
+          </div>
+      </li>
+    </ng-container>
+
+    </ul>
+
+
+</div>
+
+

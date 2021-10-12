@@ -1,0 +1,108 @@
+
+<div class="row" *ngIf="contenido" >
+  <div class="col-12" *ngIf="cargando">
+    <app-cargando-sonar class="w-100"  ></app-cargando-sonar>
+  </div>
+  <div class="col-md-12"  *ngIf="!cargando">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" *ngIf="carpetaActual" >{{carpetaActual.carpetaDocumentoTITULO}}</h4>
+        <label for=""><a (click)="eventoMostrarPadre()" class="cursor-pointer" >Inicio</a> <a class="cursor-pointer"  *ngFor="let ruta of rutas" (click)="extraerDocumentos(ruta.carpetaDocumentoCODIGO)" > / {{ruta.carpetaDocumentoTITULO}}</a> </label>
+      </div>
+      <div class="card-body">
+        <div class="row" *ngIf="!documentoVisualizar">
+
+          <div class="col-12 ">
+            <div class="row">
+              <div class="col-12 text-right" >
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="verDocumento()" [disabled]="!formCheckbox.valid">Ver</button>
+                <button type="button" class="btn btn-outline-success btn-sm" (click)="descargarDocumento()" [disabled]="!formCheckbox.valid">Descargar</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12  d-flex justify-content-center" [formGroup]="formBuscar"  >
+                <div class="form-group w-50  text-center ">
+                  <label for="">Buscar</label>
+                  <input type="text" formControlName="inputBuscar" class="form-control " placeholder="Buscar" >
+                </div>
+              </div>
+              <div class="col-12">
+                <div class=" text-left" >
+                  N. Carpetas: {{countCarpetas}}, N. Documentos: {{countDocumentos}}
+                 </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-12" >
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead class=" text-primary">
+                  <th scope="col">
+
+                  </th>
+                  <th>
+                    Nombre
+                  </th>
+                  <th scope="col">
+                    Tipo
+                  </th>
+                  <th scope="col">
+                    Fecha Creación
+                  </th>
+                </thead>
+                <tbody [formGroup]="formCheckbox" >
+
+                  <tr  *ngFor="let carpeta of carpetas" class="cursor-pointer hover-success" (click)="extraerDocumentos(carpeta.carpetaDocumentoCODIGO)" >
+                    <td>
+
+                    </td>
+                    <td>
+                      <i class="nc-icon nc-box"></i> {{carpeta.carpetaDocumentoTITULO	}}
+                    </td>
+                    <td></td>
+                    <td>
+                      {{ carpeta.carpetaDocumentoFCHCREO}}
+                    </td>
+
+                  </tr>
+                  <tr  *ngFor="let documento of documentos" class="cursor-pointer hover-success" >
+                    <td>
+                      <input type="checkbox" [value]="documento.documentoID" (change)="onCheckboxChange($event)" />
+                    </td>
+                    <td>
+                      <i class="nc-icon nc-single-copy-04"></i> {{documento.documentoTITULO}}
+                    </td>
+                    <td>
+                      {{documento.documentoTIPO}}
+                    </td>
+                    <td>
+                      {{documento.documentoFCHCREO}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+        <div class="row " *ngIf="documentoVisualizar">
+          <div class="col-12">
+            <button type="button" (click)="documentoVisualizar=''" class="btn  btn-sm">Atras</button>
+          </div>
+          <div class="col-12">
+            <ngx-doc-viewer
+              [url]="documentoVisualizar"
+              viewer="url"
+              style="width:100%;height:700px;"
+            ></ngx-doc-viewer>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

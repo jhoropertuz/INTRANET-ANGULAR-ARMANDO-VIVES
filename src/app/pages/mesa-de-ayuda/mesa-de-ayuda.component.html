@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h5 class="card-title">Nueva Solicitud</h5>
+      </div>
+      <div class="card-body ">
+        <form [formGroup]="formMesaDeAyuda" (ngSubmit)="enviarSolicitud(formMesaDeAyuda.value)">
+          <div class="row">
+            <div class="col-6 ">
+              <div class="form-group">
+                <label for="mesaDeAyudaTIPOSOLICITUD">Tipo de solicitd *</label>
+                <select name="mesaDeAyudaTIPOSOLICITUD" class="form-control" formControlName="mesaDeAyudaTIPOSOLICITUD"
+                  id="mesaDeAyudaTIPOSOLICITUD">
+                  <option value="">Seleccione el tipo de solicitud</option>
+                  <option value="ME">Mantenimiento de equipo</option>
+                  <option value="DE">Daño de equipo</option>
+                  <option value="AT">Asesoria técnica</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="mesaDeAyudaUBICACIONDELSUCESO">Ubicación del suceso *</label>
+                <select name="mesaDeAyudaUBICACIONDELSUCESO" class="form-control"
+                  formControlName="mesaDeAyudaUBICACIONDELSUCESO" id="mesaDeAyudaUBICACIONDELSUCESO">
+                  <option value="">Seleccione la ubicación del suceso</option>
+                  <option value="PS1">Piso 1</option>
+                  <option value="PS2">Piso 2</option>
+                  <option value="PS3">Piso 3</option>
+                  <option value="PS4">Piso 4</option>
+                  <option value="PS5">Piso 5</option>
+                  <option value="PS6">Piso 6</option>
+                  <option value="PS7">Piso 7</option>
+                  <option value="PS8">Piso 8</option>
+                  <option value="PS9">Piso 9</option>
+                  <option value="PSIQUIATRIA">Psiquiatria</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 ">
+              <div class="form-group">
+                <label for="mesaDeAyudaNUMEROINVENTARIOEQUIPO">No. De inventario del equipo</label>
+                <input type="text" class="form-control" formControlName="mesaDeAyudaNUMEROINVENTARIOEQUIPO"
+                  placeholder="Ingrese el numero de inventario del equipo.">
+              </div>
+            </div>
+            <div class="col-6 ">
+              <div class="form-group">
+                <label for="mesaDeAyudaNIVELPRIORIDAD">Nivel de prioridad *</label>
+                  <select name="mesaDeAyudaNIVELPRIORIDAD" class="form-control"
+                  formControlName="mesaDeAyudaNIVELPRIORIDAD" id="mesaDeAyudaNIVELPRIORIDAD">
+                  <option value="">Seleccione el nivel</option>
+                  <option value="BAJA" class="bg-success" >Baja</option>
+                  <option value="MEDIA" class="bg-warning" >Media</option>
+                  <option value="ALTA" class="bg-danger" >Alta</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 ">
+              <div class="form-group">
+                <label for="mesaDeAyudaDESCRIPCION">Descripción del suceso *</label>
+                <textarea name="mesaDeAyudaDESCRIPCION" id="mesaDeAyudaDESCRIPCION"
+                  formControlName="mesaDeAyudaDESCRIPCION" style="width: 100%;" rows="10"></textarea>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" formControlName="mesaDeAyudaID">
+          <div class="row mt-5">
+            <div class="update ml-auto mr-auto col-12">
+                <button type="submit" [disabled]="!formMesaDeAyuda.valid" class="btn btn-primary btn-round w-100 ">{{tituloaccion}}</button>
+            </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

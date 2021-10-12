@@ -1,0 +1,12 @@
+.contenedorFile{
+    border-radius: 10px;
+    border-style: dotted;
+    border-width: 2px;
+    border-color: black;
+    background-color: cc3366;
+    font-family: verdana, arial;
+    font-size: 10pt;
+}
+.contenedorFile label{
+    color: white;
+}

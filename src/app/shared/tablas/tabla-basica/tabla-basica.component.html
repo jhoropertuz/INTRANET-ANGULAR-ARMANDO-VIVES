@@ -1,0 +1,20 @@
+<div class="table-responsive"    >
+  <table class="table">
+    <thead class=" text-primary">
+      <th>#</th>
+      <th *ngFor="let columna of columnas" >
+        {{columna}}
+      </th>
+    </thead>
+    <tbody *ngIf="mostrarTablas" [formGroup]="formCheckbox">
+      <tr *ngFor="let dato of tableData; index as i" >
+        <td>
+          <input type="checkbox" [value]="dato[idItem]" (change)="selectElemto($event)" />
+        </td>
+        <td *ngFor="let key of keys">
+           {{dato[key]}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

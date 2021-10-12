@@ -1,0 +1,242 @@
+<div class="row">
+  <div class="col-md-12"  *ngIf="cargando">
+    <app-cargando-sonar></app-cargando-sonar>
+  </div>
+  <div class="col-md-12" *ngIf="!cargando">
+    <div class="card ">
+      <div class="card-header ">
+        <h5 class="card-title">Ingreso De Pacientes</h5>
+      </div>
+      <div class="card-body ">
+        <form [formGroup]="formActividadMedica" (ngSubmit)="enviarSolicitud(formActividadMedica.value)">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="actividadMedicaColaboradorASIGNACION">Asignar a: *</label>
+                <select name="actividadMedicaColaboradorASIGNACION" class="form-control" formControlName="actividadMedicaColaboradorASIGNACION"
+                  id="actividadMedicaColaboradorASIGNACION">
+                  <option value="">Seleccione</option>
+            <option *ngFor="let colaboradorActividadesMedica of colaboradoresActividadesMedicas"  value="{{colaboradorActividadesMedica.colaboradorID}}">{{colaboradorActividadesMedica.personaRAZONSOCIAL}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label for="servicioGlobalID">Servicio *</label>
+                <select (change)="changeServicios(formActividadMedica.value.servicioGlobalID)" name="servicioGlobalID" class="form-control" formControlName="servicioGlobalID"
+                  id="servicioGlobalID">
+                  <option value="">Seleccione</option>
+                  <option *ngFor="let servicio of servicios"  value="{{servicio.servicioID}}">{{servicio.servicioNOMBRE}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-12 text-center">
+              <h3> <strong> Pacientes</strong></h3>
+              <hr>
+            </div>
+            <div class="col-md-6">
+              <div class=" row" >
+                <div class="text-center col-12">
+                  <h3>Formulario</h3>
+                </div>
+              </div>
+              <form [formGroup]="formPaciente" >
+                <div class="row">
+                  <div class="col-md-6 ">
+                    <div class="form-group">
+                      <label for="tipoIdentificacionID">Tipo Identificación *</label>
+                      <select name="tipoIdentificacionID" class="form-control" formControlName="tipoIdentificacionID"
+                        id="tipoIdentificacionID">
+                        <option value="">Seleccione</option>
+                        <option *ngFor="let tipoIdentificacion of tiposIdentificaciones" [disabled]="!EDITAR" value="{{tipoIdentificacion.tipoIdentificacionID}}">{{tipoIdentificacion.tipoIdentificacionCODIGO}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="personaIDENTIFICACION">Identificación *</label>
+                        <input type="text" class="form-control" [readonly]="!EDITAR" placeholder="ingrese el numero de identificación" formControlName="personaIDENTIFICACION">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="personaRAZONSOCIAL">Nombre Completo *</label>
+                        <input type="text" class="form-control" placeholder="ingrese el nombre completo"  [readonly]="!EDITAR" formControlName="personaRAZONSOCIAL">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                        <label>Edad</label>
+                        <input type="number" class="form-control" name="personaEDAD" [readonly]="!EDITAR" formControlName="personaEDAD">
+                    </div>
+                </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                        <label>Fecha de ingreso</label>
+                        <input type="date" class="form-control" name="actividadMedicaPacienteINGRESO" [readonly]="!EDITAR" formControlName="actividadMedicaPacienteINGRESO">
+                    </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                      <label>Cama</label>
+                      <input type="text" class="form-control" name="actividadMedicaPacienteCAMA" [readonly]="!EDITAR" formControlName="actividadMedicaPacienteCAMA">
+                  </div>
+              </div>
+                  <div class="col-6 ">
+                    <div class="form-group">
+                      <label for="epsID">EPS del paciente *</label>
+                      <select name="epsID" class="form-control" formControlName="epsID"
+                        id="epsID">
+                        <option value="">Seleccione</option>
+                        <option *ngFor="let epsn of eps" [disabled]="!EDITAR" value="{{epsn.epsID}}">{{epsn.epsTITULO}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="especialidadMedicaID">Especialidad *</label>
+                      <select name="especialidadMedicaID" class="form-control"
+                        formControlName="especialidadMedicaID" id="especialidadMedicaID">
+                        <option value="">Seleccione</option>
+                        <option *ngFor="let especialidadesMedica of especialidadesMedicas" [disabled]="!EDITAR" value="{{especialidadesMedica.especialidadMedicaID}}">{{especialidadesMedica.especialidadMedicaNOMBRE}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <ng-container *ngIf="servicioOBSTETRICIA">
+                    <div class="col-12">
+                      <div class="form-group">
+                          <label>Perfil Infeccioso</label>
+                          <textarea [readonly]="!EDITAR" name="actividadMedicaPacientePERFILINFECCIOSO" id="actividadMedicaPacientePERFILINFECCIOSO"
+                              formControlName="actividadMedicaPacientePERFILINFECCIOSO" style="width: 100%;" rows="3"></textarea>
+                      </div>
+                    </div>
+                      <div class="col-12">
+                        <div class="form-group">
+                            <label>Perfil Toxemico</label>
+                            <textarea [readonly]="!EDITAR" name="actividadMedicaPacientePERFILTOXEMICO" id="actividadMedicaPacientePERFILTOXEMICO"
+                              formControlName="actividadMedicaPacientePERFILTOXEMICO" style="width: 100%;" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                          <label>Imagenes</label>
+                          <textarea [readonly]="!EDITAR" name="actividadMedicaPacienteIMAGENES" id="actividadMedicaPacienteIMAGENES"
+                          formControlName="actividadMedicaPacienteIMAGENES" style="width: 100%;" rows="3"></textarea>
+                      </div>
+                  </div>
+                  </ng-container>
+
+
+
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="actividadMedicaPacienteDIAGNOSTICO">Diagnostico</label>
+                        <textarea name="actividadMedicaPacienteDIAGNOSTICO" [readonly]="!EDITAR" id="actividadMedicaPacienteDIAGNOSTICO"
+                              formControlName="actividadMedicaPacienteDIAGNOSTICO" style="width: 100%;" rows="3"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="actividadMedicaPacienteALERGIA">Alergia</label>
+                        <textarea name="actividadMedicaPacienteALERGIA" [readonly]="!EDITAR" id="actividadMedicaPacienteALERGIA"
+                              formControlName="actividadMedicaPacienteALERGIA" style="width: 100%;" rows="7"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="actividadMedicaPacienteMEDICAMENTO">Medicamentos</label>
+                        <textarea [readonly]="!EDITAR" name="actividadMedicaPacienteMEDICAMENTO" id="actividadMedicaPacienteMEDICAMENTO"
+                              formControlName="actividadMedicaPacienteMEDICAMENTO" style="width: 100%;" rows="7"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="actividadMedicaPacientePARACLINICO">Paraclinicos</label>
+                        <textarea [readonly]="!EDITAR" name="actividadMedicaPacientePARACLINICO" id="actividadMedicaPacientePARACLINICO"
+                              formControlName="actividadMedicaPacientePARACLINICO" style="width: 100%;" rows="7"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="actividadMedicaPacienteNOTA">Pendiente</label>
+                        <textarea [readonly]="!EDITAR" name="actividadMedicaPacienteNOTA" id="actividadMedicaPacienteNOTA"
+                              formControlName="actividadMedicaPacienteNOTA" style="width: 100%;" rows="7"></textarea>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row mt-2" *ngIf="EDITAR" >
+                  <div class="  text-center col-6">
+                    <button type="button" class="btn btn-danger btn-round" (click)="limpiarFormularioPaciente()">Cancelar</button>
+                  </div>
+                  <div class=" text-center col-6">
+                      <button type="submit" [disabled]="!formPaciente.valid" (click)="insertarPaciente(formPaciente.value)" class="btn btn-primary btn-round">Agregar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-6" >
+              <div class=" row" >
+                <div class="text-center col-12">
+                  <h3>Lista</h3>
+                </div>
+              </div>
+              <div class="table-responsive"    >
+                <table class="table">
+                  <thead class=" text-primary">
+                    <th>#</th>
+                    <th>
+                      C.C
+                    </th>
+                    <th>
+                      Nombre
+                    </th>
+                    <th>
+                      Opción
+                    </th>
+                  </thead>
+                  <tbody >
+                    <tr *ngFor="let paciente of pacientes; index as i" >
+                      <td>
+                         {{i + 1}}
+                      </td>
+                      <td>
+                        {{paciente.personaIDENTIFICACION}}
+                     </td>
+                     <td>
+                        {{paciente.personaRAZONSOCIAL}}
+                     </td>
+                     <td>
+                      <button type="button" class="btn btn-info" (click)="buscarPaciente(i)">Ver</button>
+                      <button type="button" class="btn btn-danger" (click)="eliminarPaciente(i)">Eliminar</button>
+                     </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" formControlName="actividadMedicaColaboradorID">
+          <div class="row mt-5" *ngIf="EDITAR">
+            <div class="col-12" >
+              <hr>
+            </div>
+            <div class="update ml-auto mr-auto col-12">
+                <button type="submit" [disabled]="!formActividadMedica.valid" class="btn btn-success btn-round w-100 ">{{tituloaccion}}</button>
+            </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
