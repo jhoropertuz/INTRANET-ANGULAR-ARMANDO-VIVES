@@ -30,6 +30,7 @@ import { RecibidosComponent } from 'app/pages/ActividadesMedicas/recibidos/recib
 import { VerComponent } from 'app/pages/ActividadesMedicas/ver/ver.component';
 import { NuevaCarpetaComponent } from 'app/pages/documentos/nueva-carpeta/nueva-carpeta.component';
 import { ImagenesCorportivasComponent } from 'app/pages/documentos/imagenes-corportivas/imagenes-corportivas.component';
+import { HorariosMedicoComponent } from 'app/pages/documentos/horarios-medico/horarios-medico.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -79,6 +80,10 @@ export const AdminLayoutRoutes: Routes = [
       {
         path:"imagenCorporativa",
         component:  ImagenesCorportivasComponent
+      },
+      {
+        path:"horariosmedicos",
+        component:  HorariosMedicoComponent
       }
     ]},
     { path:'equipos-fisicos',children:[
