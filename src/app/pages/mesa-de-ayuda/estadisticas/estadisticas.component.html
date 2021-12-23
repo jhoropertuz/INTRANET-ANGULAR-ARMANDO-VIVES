@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-12"  *ngIf="cargando">
+    <app-cargando-sonar></app-cargando-sonar>
+  </div>
+
+  <div class="col-md-12" *ngIf="!cargando">
+    <div class="card ">
+      <div class="card-header ">
+       <h5 class="card-title">Estadisticas de mesa de ayuda</h5>
+       <hr>
+      </div>
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-bell-55 text-warning"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Pendientes</p>
+                      <p class="card-title">150
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <a [routerLink]="['/mesaDeAyuda/solicitudesPendientes']"><i class="nc-icon nc-alert-circle-i"></i> info</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-user-run text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">En curso</p>
+                      <p class="card-title">23
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <a [routerLink]="['/mesaDeAyuda/solicitudesEnCurso']"><i class="nc-icon nc-alert-circle-i"></i> info</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-check-2 text-success"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Resueltas</p>
+                      <p class="card-title">1,345
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <a [routerLink]="['/mesaDeAyuda/solicitudes']"><i class="nc-icon nc-alert-circle-i"></i> info</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

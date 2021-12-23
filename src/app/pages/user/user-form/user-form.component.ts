@@ -262,6 +262,7 @@ export class UserFormComponent implements OnInit {
           this.formUser.controls['personaPRIMERNOMBRE'].setValue(res.DATOS.personaPRIMERNOMBRE);
           this.formUser.controls['personaRAZONSOCIAL'].setValue(res.DATOS.personaRAZONSOCIAL);
           this.formUser.controls['personaSEGUNDONOMBRE'].setValue(res.DATOS.personaSEGUNDONOMBRE);
+          this.formUser.controls['personaSEGUINDOAPELLIDO'].setValue(res.DATOS.personaSEGUINDOAPELLIDO);
           this.formUser.controls['tipoIdentificacionID'].setValue(res.DATOS.tipoIdentificacionID);
           this.formUser.controls['tipoPersonaID'].setValue(res.DATOS.tipoPersonaID);
           this.formUser.controls['usuarioESTADO'].setValue(res.DATOS.usuarioESTADO);

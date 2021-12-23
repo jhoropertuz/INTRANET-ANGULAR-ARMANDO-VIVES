@@ -31,6 +31,7 @@ import { VerComponent } from 'app/pages/ActividadesMedicas/ver/ver.component';
 import { NuevaCarpetaComponent } from 'app/pages/documentos/nueva-carpeta/nueva-carpeta.component';
 import { ImagenesCorportivasComponent } from 'app/pages/documentos/imagenes-corportivas/imagenes-corportivas.component';
 import { HorariosMedicoComponent } from 'app/pages/documentos/horarios-medico/horarios-medico.component';
+import { EstadisticasComponent } from 'app/pages/mesa-de-ayuda/estadisticas/estadisticas.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -125,6 +126,10 @@ export const AdminLayoutRoutes: Routes = [
       {
         path:'form',
         component: MesaDeAyudaComponent
+      },
+      {
+        path:'estadisticas',
+        component: EstadisticasComponent
       },
       {
         path:'solicitudes',
