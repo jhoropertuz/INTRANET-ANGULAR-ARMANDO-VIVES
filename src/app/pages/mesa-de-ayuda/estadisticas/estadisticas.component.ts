@@ -7,7 +7,7 @@ import Chart from 'chart.js';
 })
 export class EstadisticasComponent implements OnInit {
   constructor() { }
-
+  cargando=false;
   ngAfterViewInit() {
     var speedCanvas2 = document.getElementById("speedChart2");
 
