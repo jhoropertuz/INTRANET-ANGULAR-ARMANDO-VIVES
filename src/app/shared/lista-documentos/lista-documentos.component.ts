@@ -6,12 +6,14 @@ import { BaseService } from 'app/servicios/base.service';
 import { LocalStorageService } from 'app/servicios/local-storage.service';
 import { SweetalertService } from 'app/servicios/sweetalert.service';
 import {ChangeDetectorRef } from '@angular/core';
+import { UsuarioLogiadoService } from 'app/servicios/usuario-logiado.service';
 @Component({
   selector: 'app-lista-documentos',
   templateUrl: './lista-documentos.component.html',
   styleUrls: ['./lista-documentos.component.css']
 })
 export class ListaDocumentosComponent implements OnInit {
+  estudianteUsuario;
   carpetas=[];
   documentos=[];
   carpetasTodos=[];
@@ -27,7 +29,7 @@ export class ListaDocumentosComponent implements OnInit {
   formCheckbox:FormGroup;
   formBuscar:FormGroup;
   @Output() mostrarPadre = new EventEmitter();
-  constructor(private cdref: ChangeDetectorRef,private formBuilder: FormBuilder,private BaseService:BaseService, public SweetalertService:SweetalertService, public LocalStorageService:LocalStorageService) {
+  constructor(public UsuarioLogiadoService: UsuarioLogiadoService, private cdref: ChangeDetectorRef,private formBuilder: FormBuilder,private BaseService:BaseService, public SweetalertService:SweetalertService, public LocalStorageService:LocalStorageService) {
     this.formCheckbox = this.formBuilder.group({
       checkboxDocumentos: this.formBuilder.array([], [Validators.required])
     });
@@ -48,6 +50,8 @@ export class ListaDocumentosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.estudianteUsuario = this.UsuarioLogiadoService.estudianteUsuario();
     this.formBuscar.get("inputBuscar").valueChanges.subscribe(res=>{
       console.log(res);
       if(res.length>3 && res.trim() !== ''){
@@ -135,7 +139,10 @@ export class ListaDocumentosComponent implements OnInit {
         console.log(res);
         if(res.RESPUESTA=="EXITO"){
           this.limpiarLista();
-          this.documentoVisualizar=this.obtenerUrlDocumento(res.DATOS[0].documentoURL) + "#toolbar=0";
+          this.documentoVisualizar=this.obtenerUrlDocumento(res.DATOS[0].documentoURL) ;
+          if (this.estudianteUsuario) {
+            this.documentoVisualizar += "#toolbar=0";
+          }
         }else{
           this.SweetalertService.modal("error","No se pudo registrar la acción.","Error");
         }

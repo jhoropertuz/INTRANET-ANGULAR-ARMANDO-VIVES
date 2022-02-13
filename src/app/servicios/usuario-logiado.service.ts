@@ -8,6 +8,7 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class UsuarioLogiadoService {
   private ADMIN="ADMIN";
+  private ESTUDIANTE="ESTUDIANTE";
   constructor(public LocalStorageService:LocalStorageService,public router:Router) { }
 
 
@@ -22,6 +23,14 @@ export class UsuarioLogiadoService {
   adminUsuario(){
     let usuario=this.LocalStorageService.getDatoJson("usuario");
     if(usuario && usuario.usuarioTIPO==this.ADMIN){
+      return true;
+    }
+    return false;
+  }
+
+  estudianteUsuario(){
+    let usuario=this.LocalStorageService.getDatoJson("usuario");
+    if(usuario && usuario.usuarioTIPO==this.ESTUDIANTE){
       return true;
     }
     return false;

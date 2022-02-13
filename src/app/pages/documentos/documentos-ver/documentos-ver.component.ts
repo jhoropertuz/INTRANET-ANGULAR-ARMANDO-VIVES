@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from 'app/servicios/base.service';
 import { SweetalertService } from 'app/servicios/sweetalert.service';
 import { Endpoind } from 'app/endpoind';
+import { UsuarioLogiadoService } from 'app/servicios/usuario-logiado.service';
 
 @Component({
   selector: 'app-documentos-ver',
@@ -10,11 +11,13 @@ import { Endpoind } from 'app/endpoind';
   styleUrls: ['./documentos-ver.component.css']
 })
 export class DocumentosVerComponent implements OnInit {
+  estudianteUsuario
   documento;
   cargando = true;
-  constructor(public  ActivatedRoute:ActivatedRoute, public BaseService: BaseService, public SweetalertService: SweetalertService, public Router:Router) { }
+  constructor(public UsuarioLogiadoService: UsuarioLogiadoService,public  ActivatedRoute:ActivatedRoute, public BaseService: BaseService, public SweetalertService: SweetalertService, public Router:Router) { }
 
   ngOnInit(): void {
+    this.estudianteUsuario = this.UsuarioLogiadoService.estudianteUsuario();
     let id=this.ActivatedRoute.snapshot.paramMap.get("id");
     if(id){
      this.buscarDocumeto(id);
@@ -30,6 +33,10 @@ export class DocumentosVerComponent implements OnInit {
       if(res.RESPUESTA=="EXITO"){
         this.documento = res.DATOS;
         this.documento.documentoURL = Endpoind.API_BASE + this.documento.documentoURL;
+
+        if (this.estudianteUsuario) {
+          this.documento.documentoURL += "#toolbar=0";
+        }
         this.cargando = false;
       }else{
         this.SweetalertService.modal("error",res.MENSAJE);
