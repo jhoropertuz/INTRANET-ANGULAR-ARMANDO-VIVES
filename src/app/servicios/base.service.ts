@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Endpoind } from '../endpoind';
 import { UsuarioLogiadoService } from './usuario-logiado.service';
+import { environment } from 'environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +24,7 @@ export class BaseService {
   postJson(controlador,operacion,Data:any={}):Observable<any>{
     Data.controlador=controlador;
     Data.operacion=operacion;
+    Data.app=environment.app;
     let usuario=this.UsuarioLogiadoService.getUsuario();
     if(usuario){
       Data.usrLogin=usuario.usuarioID;
@@ -31,12 +33,14 @@ export class BaseService {
   }
 
   putJson(Data:any,url):Observable<any>{
+    Data.app=environment.app;
     return this.http.patch<any>(Endpoind.API_BASE+url,Data);
   }
 
   postFormData(controlador,operacion,formData:any=new FormData()):Observable<any>{
     formData.append('controlador', controlador);
     formData.append('operacion', operacion);
+    formData.append('app', environment.app);
     formData.append('usrLogin', this.UsuarioLogiadoService.getUsuario().usuarioID);
     return this.http.post<any>(Endpoind.API_BASE,formData);
   }

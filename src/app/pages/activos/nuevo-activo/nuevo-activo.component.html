@@ -1,0 +1,75 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h5 class="card-title">Activos</h5>
+      </div>
+      <div class="card-body ">
+        <form [formGroup]="fromActivos" (ngSubmit)="enviarSolicitud(fromActivos.value)">
+        <div class="row text-center">
+          <div class="col-12 ">
+            <h5>Hoja de vida de activos</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 ">
+            <div class="form-group">
+              <label for="activoCategoriaID">Categoria de activo</label>
+              <select (change)="changeCategoria()" formControlName="activoCategoriaID" name="activoCategoriaID" class="form-control" id="activoCategoriaID">
+                <option value="">Seleccione</option>
+                <option *ngFor="let activosCategotia of activosCategotias" value="{{activosCategotia.activoCategoriaID}}">{{activosCategotia.activoCategoriaTITULO}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-6 ">
+            <div class="form-group">
+              <label for="tipoActivoID">Tipo de activo</label>
+              <select name="tipoActivoID" class="form-control" formControlName="tipoActivoID"  id="tipoActivoID">
+                <option value="">Seleccione</option>
+                <option *ngFor="let tipoActivo of tipoActivos" value="{{tipoActivo.tipoActivoID}}">{{tipoActivo.tipoActivoTITULO}}</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-4 ">
+            <div class="form-group">
+              <label for="activoSERIAL">Serial</label>
+              <input type="text" class="form-control" formControlName="activoSERIAL" placeholder="ingrese el serial del activo">
+            </div>
+          </div>
+          <div class="col-4 ">
+            <div class="form-group">
+              <label for="activoMARCA">Marca</label>
+              <input type="text" class="form-control" formControlName="activoMARCA" placeholder="ingrese la marca del activo">
+            </div>
+          </div>
+          <div class="col-4 ">
+            <div class="form-group">
+              <label for="activoNUMEROPLACA">Numero de placa</label>
+              <input type="text" class="form-control" formControlName="activoNUMEROPLACA" placeholder="ingrese el numero de la placa del activo">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 ">
+            <div class="form-group">
+              <label for="personaIDENTIFICACION">Identificion de trabajador a cargo</label>
+              <input type="text" class="form-control" formControlName="personaIDENTIFICACION" placeholder="ingrese el numero de identificación">
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="update ml-auto mr-auto col-12">
+              <button type="submit" [disabled]="!fromActivos.valid" class="btn btn-primary btn-round w-100 ">{{tituloaccion}}</button>
+          </div>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+

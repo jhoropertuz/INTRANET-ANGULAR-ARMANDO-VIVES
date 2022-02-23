@@ -46,6 +46,7 @@ import { VerComponent } from 'app/pages/ActividadesMedicas/ver/ver.component';
 import { ImagenesCorportivasComponent } from 'app/pages/documentos/imagenes-corportivas/imagenes-corportivas.component';
 import { HorariosMedicoComponent } from 'app/pages/documentos/horarios-medico/horarios-medico.component';
 import { EstadisticasComponent } from 'app/pages/mesa-de-ayuda/estadisticas/estadisticas.component';
+import { NuevoActivoComponent } from 'app/pages/activos/nuevo-activo/nuevo-activo.component';
 
 @NgModule({
   imports: [
@@ -94,7 +95,8 @@ import { EstadisticasComponent } from 'app/pages/mesa-de-ayuda/estadisticas/esta
     NuevaCarpetaComponent,
     ImagenesCorportivasComponent,
     HorariosMedicoComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    NuevoActivoComponent
   ]
 })
 
