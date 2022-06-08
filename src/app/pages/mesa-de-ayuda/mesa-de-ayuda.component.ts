@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from 'app/servicios/base.service';
 import { SweetalertService } from 'app/servicios/sweetalert.service';
+import { now } from 'moment';
 
 @Component({
   selector: 'app-mesa-de-ayuda',
@@ -28,6 +29,7 @@ export class MesaDeAyudaComponent implements OnInit {
       mesaDeAyudaDESCRIPCION: new FormControl('', Validators.compose([Validators.required])),
       mesaDeAyudaID: new FormControl(''),
       mesaDeAyudaNIVELPRIORIDAD: new FormControl('', Validators.compose([Validators.required])),
+      mesaDeAyudaFCHCREO: new FormControl('0000-00-00 00:00:00', Validators.compose([Validators.required]))
     });
    }
 
@@ -49,6 +51,7 @@ export class MesaDeAyudaComponent implements OnInit {
         this.formMesaDeAyuda.controls['mesaDeAyudaDESCRIPCION'].setValue(res.DATOS.mesaDeAyudaDESCRIPCION);
         this.formMesaDeAyuda.controls['mesaDeAyudaID'].setValue(res.DATOS.mesaDeAyudaID);
         this.formMesaDeAyuda.controls['mesaDeAyudaNIVELPRIORIDAD'].setValue(res.DATOS.mesaDeAyudaNIVELPRIORIDAD);
+        this.formMesaDeAyuda.controls['mesaDeAyudaFCHCREO'].setValue(res.DATOS.mesaDeAyudaFCHCREO);
       }else{
         this.SweetalertService.modal("error",res.MENSAJE);
       }

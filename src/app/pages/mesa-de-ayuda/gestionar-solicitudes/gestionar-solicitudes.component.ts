@@ -13,6 +13,7 @@ export class GestionarSolicitudesComponent implements OnInit {
   public formMesaDeAyuda;
   public tituloaccion= "Actualizar";
   public funcionarioAtencion = [];
+  showInputFechaFinalizacion = false;
 
   constructor(
     public  Router:Router,
@@ -30,6 +31,7 @@ export class GestionarSolicitudesComponent implements OnInit {
       mesaDeAyudaNIVELPRIORIDAD: new FormControl('', Validators.compose([Validators.required])),
       mesaDeAyudaCOLABORADORASIGNADO: new FormControl(''),
       mesaDeAyudaESTADO: new FormControl('', Validators.compose([Validators.required])),
+      mesaDeAyudaFCHFINALIZACION: new FormControl(''),
       mesaDeAyudaNOTA: new FormControl('')
     });
    }
@@ -85,6 +87,15 @@ export class GestionarSolicitudesComponent implements OnInit {
         this.SweetalertService.modal("error",res.MENSAJE);
       }
     });
+  }
+
+  accionEstadoFinalizada(estado){
+    if (estado=="FINALIZADA") {
+      this.showInputFechaFinalizacion = true;
+      return;
+    }
+
+    this.showInputFechaFinalizacion = false;
   }
 
 
