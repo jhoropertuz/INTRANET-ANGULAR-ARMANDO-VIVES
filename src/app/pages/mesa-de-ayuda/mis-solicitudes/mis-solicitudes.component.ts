@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService } from 'app/servicios/base.service';
 import { SweetalertService } from 'app/servicios/sweetalert.service';
-import { TablaBasicaComponent } from 'app/shared/tablas/tabla-basica/tabla-basica.component';
+import { TablaDatatableComponent } from 'app/shared/tablas/tabla-datatable/tabla-datatable.component';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class MisSolicitudesComponent implements AfterViewInit,OnInit {
 
   dataTable={};
   mostrarTabla=true;
-  @ViewChild(TablaBasicaComponent) TablaBasicaComponent: TablaBasicaComponent;
+  @ViewChild(TablaDatatableComponent) TablaDatatableComponent: TablaDatatableComponent;
   constructor(public Router:Router,public BaseService:BaseService, public SweetalertService:SweetalertService){
   }
 
@@ -22,18 +22,18 @@ export class MisSolicitudesComponent implements AfterViewInit,OnInit {
   }
 
   ngAfterViewInit() {
-    this.TablaBasicaComponent.cargarDatos("MesaDeAyuda","solicitudesPorUsuario",{mesaDeAyudaNIVELPRIORIDAD:'Prioridad', mesaDeAyudaTIPOSOLICITUD:'Tipo', mesaDeAyudaFCHCREO:'FCH Creación', mesaDeAyudaESTADO:'Estado'},'mesaDeAyudaID');
+    this.TablaDatatableComponent.cargarDatos("MesaDeAyuda","solicitudesPorUsuario",{mesaDeAyudaNIVELPRIORIDAD:'Prioridad', mesaDeAyudaTIPOSOLICITUD:'Tipo', mesaDeAyudaFCHCREO:'FCH Creación', mesaDeAyudaESTADO:'Estado'},'mesaDeAyudaID');
   }
 
   editar(){
-    let elemnt=this.TablaBasicaComponent.obtenerUnElementoSeleccionado();
+    let elemnt=this.TablaDatatableComponent.obtenerUnElementoSeleccionado();
     if(elemnt){
       this.Router.navigateByUrl('mesaDeAyuda/editar/'+elemnt);
     }
   }
 
   ver(){
-    let elemnt=this.TablaBasicaComponent.obtenerUnElementoSeleccionado();
+    let elemnt=this.TablaDatatableComponent.obtenerUnElementoSeleccionado();
     if(elemnt){
       this.Router.navigateByUrl('mesaDeAyuda/ver/'+elemnt);
     }

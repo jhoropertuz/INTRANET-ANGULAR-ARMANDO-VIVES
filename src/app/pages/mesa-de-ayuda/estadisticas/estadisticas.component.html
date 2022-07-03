@@ -9,8 +9,31 @@
        <h5 class="card-title">Estadisticas de mesa de ayuda</h5>
        <hr>
       </div>
-      <div class="card-body ">
-        <div class="row">
+      <div class="card-body  mt-0 pt-0">
+
+        <div class="row mt-0 pt-0">
+          <div class="col-12 text-center mt-0 pt-0">
+            <div class="card card-stats mt-0 pt-0">
+              <div class="card-body text-center mt-0 pt-0">
+                
+
+                 
+                    <div class="numbers text-center">
+                      <p class="card-category">total</p>
+                      <p class="card-title"> {{datos.totalSolicitudes.cantidad}}
+                        <p>
+                    </div>
+                 
+               
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <a  (click)="exportar()" style="cursor:pointer"><i class="nc-icon nc-cloud-download-93"></i> exportar</a>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="card card-stats">
               <div class="card-body ">
@@ -23,7 +46,7 @@
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Pendientes</p>
-                      <p class="card-title">150
+                      <p class="card-title">{{datos.nPendientes.cantidad}}
                         <p>
                     </div>
                   </div>
@@ -49,7 +72,7 @@
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">En curso</p>
-                      <p class="card-title">23
+                      <p class="card-title">{{datos.nEnCurso.cantidad}}
                         <p>
                     </div>
                   </div>
@@ -75,7 +98,7 @@
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Resueltas</p>
-                      <p class="card-title">1,345
+                      <p class="card-title">{{datos.nFinalizadas.cantidad}}
                         <p>
                     </div>
                   </div>

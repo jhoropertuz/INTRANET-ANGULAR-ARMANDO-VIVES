@@ -3,17 +3,18 @@ import { Router } from '@angular/router';
 import { BaseService } from 'app/servicios/base.service';
 import { SweetalertService } from 'app/servicios/sweetalert.service';
 import { TablaBasicaComponent } from 'app/shared/tablas/tabla-basica/tabla-basica.component';
+import { TablaDatatableComponent } from 'app/shared/tablas/tabla-datatable/tabla-datatable.component';
 
 @Component({
   selector: 'app-solicitudes',
   templateUrl: './solicitudes.component.html',
   styleUrls: ['./solicitudes.component.css']
 })
-export class SolicitudesComponent implements OnInit {
+export class SolicitudesComponent implements AfterViewInit,OnInit {
 
   dataTable = {};
   mostrarTabla = true;
-  @ViewChild(TablaBasicaComponent) TablaBasicaComponent: TablaBasicaComponent;
+  @ViewChild(TablaDatatableComponent) TablaDatatableComponent: TablaDatatableComponent;
   constructor(public Router: Router, public BaseService: BaseService, public SweetalertService: SweetalertService) {
   }
 
@@ -21,18 +22,18 @@ export class SolicitudesComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.TablaBasicaComponent.cargarDatos("MesaDeAyuda", "solicitudes", {personaRAZONSOCIAL: 'Funcionario',  mesaDeAyudaNIVELPRIORIDAD: 'Prioridad', mesaDeAyudaTIPOSOLICITUD: 'Tipo', mesaDeAyudaFCHCREO: 'FCH Creación',personasAsignadaRAZONSOCIAL:'Asignado a', mesaDeAyudaESTADO: 'Estado' }, 'mesaDeAyudaID');
+    this.TablaDatatableComponent.cargarDatos("MesaDeAyuda", "solicitudes", {personaRAZONSOCIAL: 'Funcionario',  mesaDeAyudaNIVELPRIORIDAD: 'Prioridad', mesaDeAyudaTIPOSOLICITUD: 'Tipo', mesaDeAyudaFCHCREO: 'FCH Creación',personasAsignadaRAZONSOCIAL:'Asignado a', mesaDeAyudaESTADO: 'Estado' }, 'mesaDeAyudaID');
   }
 
   gestionar() {
-    let elemnt = this.TablaBasicaComponent.obtenerUnElementoSeleccionado();
+    let elemnt = this.TablaDatatableComponent.obtenerUnElementoSeleccionado();
     if (elemnt) {
       this.Router.navigateByUrl('mesaDeAyuda/gestionarSolicitud/' + elemnt);
     }
   }
 
   ver() {
-    let elemnt=this.TablaBasicaComponent.obtenerUnElementoSeleccionado();
+    let elemnt=this.TablaDatatableComponent.obtenerUnElementoSeleccionado();
     if(elemnt){
       this.Router.navigateByUrl('mesaDeAyuda/ver/'+elemnt);
     }

@@ -10,12 +10,23 @@ import { environment } from 'environments/environment';
 export class BaseService {
 
   headers = { headers: new HttpHeaders({
-    'Content-Type': 'aplication/json',
+    'Content-Type': 'application/vnd.ms-excel',
     'Access-Control-Allow-Origin': 'http://localhost:4200/',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
     'Access-Control-Allow-Headers' : 'X-Requested-With,content-type'
   }) };
   constructor(private http: HttpClient, public UsuarioLogiadoService:UsuarioLogiadoService) { }
+
+  exportarArchivo(controlador,operacion,Data:any={}):Observable<any>{
+    Data.controlador=controlador;
+    Data.operacion=operacion;
+    Data.app=environment.app;
+    let usuario=this.UsuarioLogiadoService.getUsuario();
+    if(usuario){
+      Data.usrLogin=usuario.usuarioID;
+    }
+    return this.http.post<any>(Endpoind.API_BASE,Data,this.headers);
+  }
 
   getJson(url):Observable<any>{
     return this.http.get<any>(Endpoind.API_BASE+url);

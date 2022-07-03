@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseService } from 'app/servicios/base.service';
+import { SweetalertService } from 'app/servicios/sweetalert.service';
+import { Endpoind } from '../../../endpoind';
 import Chart from 'chart.js';
 @Component({
   selector: 'app-estadisticas',
@@ -6,7 +9,8 @@ import Chart from 'chart.js';
   styleUrls: ['./estadisticas.component.css']
 })
 export class EstadisticasComponent implements OnInit {
-  constructor() { }
+  constructor(private BaseService:BaseService, public SweetalertService:SweetalertService) { }
+  datos;
   cargando=false;
   ngAfterViewInit() {
     var speedCanvas2 = document.getElementById("speedChart2");
@@ -155,9 +159,34 @@ export class EstadisticasComponent implements OnInit {
     });
 }
   ngOnInit(): void {
-
+    this.cargarDatos();
   }
 
+  cargarDatos(){
+    this.BaseService.postJson('MesaDeAyuda','estadisticas').subscribe(res=>{
+      if (res.RESPUESTA == "EXITO") {
+        this.datos = res.DATOS;
+      }else{
+        this.SweetalertService.modal("error",res.MENSAJE);
+      }
+    });
+  }
+
+  exportar(){
+    this.BaseService.exportarArchivo('MesaDeAyuda','exportar').subscribe(res=>{
+      if (res.RESPUESTA == "EXITO") {
+        var a = document.createElement('a');
+        a.href  = Endpoind.ARCHIVOS+"UTILIDADES/reporteGeneral.xlsx"; 
+        a.target      = '';
+        a.download    = 'reporteGeneral.xlsx';
+        document.body.appendChild(a);
+        a.click();
+        this.SweetalertService.notificacion("success", "Exportaciòn exitosa")
+      }else{
+        this.SweetalertService.modal("error",res.MENSAJE);
+      }
+    });
+  }
 
 
 }
