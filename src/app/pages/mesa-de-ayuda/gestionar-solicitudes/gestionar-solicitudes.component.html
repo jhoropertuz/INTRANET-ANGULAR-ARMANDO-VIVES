@@ -9,33 +9,20 @@
           <div class="row">
             <div class="col-6 ">
               <div class="form-group">
-                <label for="mesaDeAyudaTIPOSOLICITUD">Tipo de solicitd *</label>
-                <select name="mesaDeAyudaTIPOSOLICITUD" class="form-control" formControlName="mesaDeAyudaTIPOSOLICITUD"
-                  id="mesaDeAyudaTIPOSOLICITUD">
-                  <option value="">Seleccione el tipo de solicitud</option>
-                  <option value="ME">Mantenimiento de equipo</option>
-                  <option value="DE">Daño de equipo</option>
-                  <option value="AT">Asesoria técnica</option>
+                <label for="mesaDeAyudaTipoDeSolicitudID">Tipo de solicitd *</label>
+                <select name="mesaDeAyudaTipoDeSolicitudID" class="form-control" formControlName="mesaDeAyudaTipoDeSolicitudID"
+                  id="mesaDeAyudaTipoDeSolicitudID">
+                  <option *ngFor="let tipoDeSolicitud  of tiposDeSolicitudes"  value="{{tipoDeSolicitud.mesaDeAyudaTipoDeSolicitudID}}"> {{tipoDeSolicitud.mesaDeAyudaTipoDeSolicitudNOMBRE}} ({{tipoDeSolicitud.mesaDeAyudaTipoDeSolicitudCODIGO}})</option>
                 </select>
               </div>
             </div>
             <div class="col-6">
               <div class="form-group">
-                <label for="mesaDeAyudaUBICACIONDELSUCESO">Ubicación del suceso *</label>
-                <select name="mesaDeAyudaUBICACIONDELSUCESO" class="form-control"
-                  formControlName="mesaDeAyudaUBICACIONDELSUCESO" id="mesaDeAyudaUBICACIONDELSUCESO">
+                <label for="mesaDeAyudaUbicacionID">Ubicación del suceso *</label>
+                <select name="mesaDeAyudaUbicacionID" class="form-control"
+                  formControlName="mesaDeAyudaUbicacionID" id="mesaDeAyudaUbicacionID">
                   <option value="">Seleccione la ubicación del suceso</option>
-                  <option value="PS1">Piso 1</option>
-                  <option value="PS2">Piso 2</option>
-                  <option value="PS3">Piso 3</option>
-                  <option value="PS4">Piso 4</option>
-                  <option value="PS5">Piso 5</option>
-                  <option value="PS6">Piso 6</option>
-                  <option value="PS7">Piso 7</option>
-                  <option value="PS8">Piso 8</option>
-                  <option value="PS9">Piso 9</option>
-                  <option value="PSIQUIATRIA">Psiquiatria</option>
-                  <option value="FACTURACION">Facturación</option>
+                  <option *ngFor="let ubicacion  of ubicaciones"  value="{{ubicacion.mesaDeAyudaUbicacionID}}"> {{ubicacion.mesaDeAyudaUbicacionNOMBRE}} ({{ubicacion.mesaDeAyudaUbicacionCODIGO}})</option>
                 </select>
               </div>
             </div>

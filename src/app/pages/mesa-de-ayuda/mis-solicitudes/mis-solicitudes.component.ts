@@ -22,7 +22,7 @@ export class MisSolicitudesComponent implements AfterViewInit,OnInit {
   }
 
   ngAfterViewInit() {
-    this.TablaDatatableComponent.cargarDatos("MesaDeAyuda","solicitudesPorUsuario",{mesaDeAyudaNIVELPRIORIDAD:'Prioridad', mesaDeAyudaTIPOSOLICITUD:'Tipo', mesaDeAyudaFCHCREO:'FCH Creación', mesaDeAyudaESTADO:'Estado'},'mesaDeAyudaID');
+    this.TablaDatatableComponent.cargarDatos("MesaDeAyuda","solicitudesPorUsuario",{mesaDeAyudaNIVELPRIORIDAD:'Prioridad', mesaDeAyudaTipoDeSolicitudCODIGO:'Tipo', mesaDeAyudaFCHCREO:'FCH Creación', mesaDeAyudaESTADO:'Estado'},'mesaDeAyudaID');
   }
 
   editar(){

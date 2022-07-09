@@ -21,7 +21,7 @@ export class SolicitudesEnCursoComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.TablaDatatableComponent.cargarDatos("MesaDeAyuda", "solicitudesEnCurso", {personaRAZONSOCIAL: 'Funcionario',  mesaDeAyudaNIVELPRIORIDAD: 'Prioridad', mesaDeAyudaTIPOSOLICITUD: 'Tipo', mesaDeAyudaFCHCREO: 'FCH Creación', personasAsignadaRAZONSOCIAL:'Asignado a', mesaDeAyudaESTADO: 'Estado' }, 'mesaDeAyudaID');
+    this.TablaDatatableComponent.cargarDatos("MesaDeAyuda", "solicitudesEnCurso", {personaRAZONSOCIAL: 'Funcionario',  mesaDeAyudaNIVELPRIORIDAD: 'Prioridad', mesaDeAyudaTipoDeSolicitudCODIGO: 'Tipo', mesaDeAyudaFCHCREO: 'FCH Creación', personasAsignadaRAZONSOCIAL:'Asignado a', mesaDeAyudaESTADO: 'Estado' }, 'mesaDeAyudaID');
   }
 
   gestionar() {

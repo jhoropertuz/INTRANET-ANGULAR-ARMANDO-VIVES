@@ -15,6 +15,9 @@ export class MesaDeAyudaComponent implements OnInit {
   public formMesaDeAyuda;
   public tituloaccion= "Guardar";
 
+  tiposDeSolicitudes = [];
+  ubicaciones = [];
+
   constructor(
     public  Router:Router,
     public  ActivatedRoute:ActivatedRoute ,
@@ -23,8 +26,8 @@ export class MesaDeAyudaComponent implements OnInit {
     public BaseService:BaseService
   ) {
     this.formMesaDeAyuda = this.fb.group({
-      mesaDeAyudaTIPOSOLICITUD: new FormControl('', Validators.compose([Validators.required])),
-      mesaDeAyudaUBICACIONDELSUCESO: new FormControl('', Validators.compose([Validators.required])),
+      mesaDeAyudaTipoDeSolicitudID: new FormControl('', Validators.compose([Validators.required])),
+      mesaDeAyudaUbicacionID: new FormControl('', Validators.compose([Validators.required])),
       mesaDeAyudaNUMEROINVENTARIOEQUIPO: new FormControl(''),
       mesaDeAyudaDESCRIPCION: new FormControl('', Validators.compose([Validators.required])),
       mesaDeAyudaID: new FormControl(''),
@@ -34,6 +37,7 @@ export class MesaDeAyudaComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.cargarDatosDeEntrada();
     let id=this.ActivatedRoute.snapshot.paramMap.get("id");
 
     if (id) {
@@ -41,12 +45,23 @@ export class MesaDeAyudaComponent implements OnInit {
     }
   }
 
+  cargarDatosDeEntrada(){
+    this.BaseService.postJson('MesaDeAyuda','formDatosDeEntrada').subscribe(res=>{
+      if (res.RESPUESTA == "EXITO") {
+        this.tiposDeSolicitudes = res.DATOS.MesaDeAyudaTiposDeSolicitudes;
+        this.ubicaciones = res.DATOS.MesaDeAyudaUbicaciones;
+      }else{
+        this.SweetalertService.modal("error",res.MENSAJE);
+      }
+    });
+  }
+
   cargarDatosSolicitud(id){
     this.tituloaccion= "Actualizar";
     this.BaseService.postJson('MesaDeAyuda','solicitudesPorID',{mesaDeAyudaID:id}).subscribe(res=>{
       if (res.RESPUESTA == "EXITO") {
-        this.formMesaDeAyuda.controls['mesaDeAyudaTIPOSOLICITUD'].setValue(res.DATOS.mesaDeAyudaTIPOSOLICITUD);
-        this.formMesaDeAyuda.controls['mesaDeAyudaUBICACIONDELSUCESO'].setValue(res.DATOS.mesaDeAyudaUBICACIONDELSUCESO);
+        this.formMesaDeAyuda.controls['mesaDeAyudaTipoDeSolicitudID'].setValue(res.DATOS.mesaDeAyudaTipoDeSolicitudID);
+        this.formMesaDeAyuda.controls['mesaDeAyudaUbicacionID'].setValue(res.DATOS.mesaDeAyudaUbicacionID);
         this.formMesaDeAyuda.controls['mesaDeAyudaNUMEROINVENTARIOEQUIPO'].setValue(res.DATOS.mesaDeAyudaNUMEROINVENTARIOEQUIPO);
         this.formMesaDeAyuda.controls['mesaDeAyudaDESCRIPCION'].setValue(res.DATOS.mesaDeAyudaDESCRIPCION);
         this.formMesaDeAyuda.controls['mesaDeAyudaID'].setValue(res.DATOS.mesaDeAyudaID);
